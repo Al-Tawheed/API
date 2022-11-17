@@ -1,0 +1,22 @@
+{
+  "name": "alsunnah-api",
+  "version": "1.0.0",
+  "description": "API for alsunnah",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Al-Sunnah/API.git"
+  },
+  "author": "moumin",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Al-Sunnah/API/issues"
+  },
+  "homepage": "https://github.com/Al-Sunnah/API#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
