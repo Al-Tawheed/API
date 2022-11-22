@@ -1,15 +1,21 @@
 {
   "name": "alsunnah-api",
   "version": "1.0.0",
-  "description": "API for alsunnah",
-  "main": "index.js",
+  "description": "API for Alsunnah",
+  "main": "app.js",
   "scripts": {
-    "test": "node index.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Al-Sunnah/API.git"
   },
+  "keywords": [
+    "hadith",
+    "dutch"
+  ],
   "author": "moumin",
   "license": "Apache-2.0",
   "bugs": {
@@ -17,6 +23,12 @@
   },
   "homepage": "https://github.com/Al-Sunnah/API#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "config": "^3.3.8",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "helmet": "^6.0.0",
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.20"
   }
 }

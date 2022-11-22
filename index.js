@@ -1,19 +1,11 @@
-const { json } = require('express')
-const express = require('express')
+const dotenv = require('dotenv');
+const helmet = require("helmet");
+const NODE_ENV = process.env.NODE_ENV || 'development';
+if (NODE_ENV === 'development') dotenv.config();
 
-const app = express()
-const port = 3000
+const config = require('config');
+const PORT = config.get('PORT');
 
-app.get('/', (req, res) => {
-  let info = {
-    hadith: "/hadith/:book/:number",
-    search: "/search/:search",
-    random: "/hadith/random",
-    book: "/hadith/:book"
-  };
-  res.send({info})
-})
+const app = require('./app');
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+app.listen(PORT, () => console.log(`Server is running in ${NODE_ENV} mode on port: ${PORT}`));
