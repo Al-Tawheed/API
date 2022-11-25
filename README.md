@@ -21,4 +21,4 @@ Welcome to the API wiki!
 * /v1/hadith/collection/[books]/chapter/[chapter number]
 
 **English and arabic**
-![banner](https://cdn.discordapp.com/attachments/945060092888379483/1045686016381567056/bane.png)
+![banner](https://cdn.discordapp.com/attachments/792479438532509697/1045823150841143407/alsunnahapi.png)
