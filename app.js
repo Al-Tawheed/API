@@ -24,6 +24,6 @@ app.use(NODE_ENV === 'development' ? cors() : cors(corsOptions));
 
 app.get('/', (req, res) => res.send({statusCode: 200, statusMessage: 'Ok', data:'https://github.com/Al-Sunnah/API'}));
 
-app.use('/api', apiRouter);
+app.use('/v1', apiRouter);
 
 module.exports = app;

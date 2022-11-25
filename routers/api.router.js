@@ -2,18 +2,48 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../databases/mysql.db');
 
-
+const cheerio = require("cheerio");
+const rs = require("request");
 
 // Endpoint for getting all the records
-router.get('/hadith/:collection', async (req, res) => {
+//router.get('/hadith/collection/:collection', async (req, res) => {
+//    let colection = req.params.collection;
+//    const onlyLettersPattern = /^[A-Za-z]+$/;
+//
+//    if(!colection.match(onlyLettersPattern)){
+//       return res.status(500).send({ statusCode: 500, statusMessage: 'Param Error', message: null, data: null });
+//    }
+//    try{ 
+//        const sql = `SELECT * FROM hadithtable WHERE collection="${colection}" ORDER BY chapter_number `;
+//      const [rows] = await pool.execute(sql);
+//        res.send({
+//       statusCode: 200,
+//        statusMessage: 'Ok',
+//        message: 'Successfully retrieved all the hadiths.',
+//        data: rows,
+//    });
+//} catch (err) {
+//    res.status(500).send({ statusCode: 500, statusMessage: 'Internal Server Error', message: null, data: null });
+//}
+//});
+
+
+
+// Endpoint for getting all the records with specififck hadith number
+router.get('/hadith/collection/:collection/hadith/:number', async (req, res) => {
     let colection = req.params.collection;
+    let number = req.params.number;
+    if(isNaN(number))
+    {
+      return  res.status(500).send({ statusCode: 500, statusMessage: 'Hadith number is not an number', message: null, data: null });
+    }
     const onlyLettersPattern = /^[A-Za-z]+$/;
 
     if(!colection.match(onlyLettersPattern)){
        return res.status(500).send({ statusCode: 500, statusMessage: 'Param Error', message: null, data: null });
     }
     try{ 
-        const sql = `SELECT * FROM hadithtable WHERE collection="${colection}" `;
+        const sql = `SELECT * FROM hadithtable WHERE collection="${colection}" AND hadithNumber=${number}`;
         const [rows] = await pool.execute(sql);
         res.send({
         statusCode: 200,
@@ -26,45 +56,73 @@ router.get('/hadith/:collection', async (req, res) => {
 }
 });
 
-// Endpoint for creating a new record
-router.post('/hadith/new', async (req, res) => {
-    var collection = req.body.collection;
-    var booknumber = req.body.booknumber;
-    var hoofdstuk = req.body.hoofdstuk;
-    var hadithnumber = req.body.hadithnumber;
-    var transmiter = req.body.transmiter;
-    var text = req.body.text;
-    var beoordeling = req.body.beoordeling;
-    var password = req.body.password;
-    const onlyLettersPattern = /^[A-Za-z]+$/;
-    
 
-    if(!password === process.env.password)
-    {
-        return res.status(500).send({ statusCode: 500, statusMessage: 'invalid password', message: null, data: null });
-    }
-
-    if(!collection.match(onlyLettersPattern)){
-        return res.status(500).send({ statusCode: 500, statusMessage: 'Param Error', message: null, data: null });
-     }
-     if(isNaN(Number(booknumber))) {
-        return res.status(500).send({ statusCode: 500, statusMessage: 'booknumber is not a number', message: null, data: null });
-      }
-
-     try{ 
-         const sql = `INSERT INTO hadithtable(collection, bookNumber, hoofdstuk, hadithNumber, transmiter, Text, Beoordeling) VALUES ( "${collection}", "${booknumber}", "${hoofdstuk}", "${hadithnumber}", "${transmiter}", "${text}", "${beoordeling}") `;
-         await pool.execute(sql);
-         res.send({
-         statusCode: 200,
-         statusMessage: 'Ok',
-         message: 'Successfully created new hadith',
-     });
- } catch (err) {
-     res.status(500).send({ statusCode: 500, statusMessage: 'Internal Server Error', message: null, data: null });
- }
-
+// Endpoint for getting random hadith
+router.get('/hadith/random', async (req, res) => {
+    try{ 
+        const sql = `SELECT * FROM hadithtable ORDER BY RAND() LIMIT 1`;
+        const [rows] = await pool.execute(sql);
+        res.send({
+        statusCode: 200,
+        statusMessage: 'Ok',
+        message: 'Successfully retrieved hadith',
+        data: rows,
+    });
+} catch (err) {
+    res.status(500).send({ statusCode: 500, statusMessage: 'Internal Server Error', message: null, data: null });
+}
 });
 
 
+// Endpoint for chapter from collection
+router.get('/hadith/chapter/:collection', async (req, res) => {
+    let colection = req.params.collection;
+    const onlyLettersPattern = /^[A-Za-z]+$/;
+
+    if(!colection.match(onlyLettersPattern)){
+       return res.status(500).send({ statusCode: 500, statusMessage: 'Param Error', message: null, data: null });
+    }
+    try{ 
+        const sql = `SELECT DISTINCT chapter,chapter_number FROM hadithtable WHERE collection="${colection}" ORDER BY chapter_number `;
+        const [rows] = await pool.execute(sql);
+        res.send({
+        statusCode: 200,
+        statusMessage: 'Ok',
+        message: 'Successfully retrieved hadith',
+        data: rows,
+    });
+} catch (err) {
+    res.status(500).send({ statusCode: 500, statusMessage: 'Internal Server Error', message: null, data: null });
+}
+});
+
+
+// Endpoint for getting all the records
+router.get('/hadith/collection/:collection/chapter/:number', async (req, res) => {
+    let colection = req.params.collection;
+    let number = req.params.number;
+    if(isNaN(number))
+    {
+      return  res.status(500).send({ statusCode: 500, statusMessage: 'chapter number is not an number', message: null, data: null });
+    }
+    const onlyLettersPattern = /^[A-Za-z]+$/;
+
+    if(!colection.match(onlyLettersPattern)){
+       return res.status(500).send({ statusCode: 500, statusMessage: 'Param Error', message: null, data: null });
+    }
+    try{ 
+        const sql = `SELECT * FROM hadithtable WHERE collection="${colection}" AND chapter_number=${number} ORDER BY hadithNumber `;
+        const [rows] = await pool.execute(sql);
+        res.send({
+        statusCode: 200,
+        statusMessage: 'Ok',
+        message: 'Successfully retrieved all the hadiths.',
+        data: rows,
+    });
+} catch (err) {
+    res.status(500).send({ statusCode: 500, statusMessage: 'Internal Server Error', message: null, data: null });
+}
+});
 
 module.exports = router;
+
