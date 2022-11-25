@@ -19,3 +19,5 @@ Welcome to the API wiki!
 * /v1/hadith/random
 * /v1/hadith/chapter/[book]
 * /v1/hadith/collection/[books]/chapter/[chapter number]
+
+![banner](https://cdn.discordapp.com/attachments/945060092888379483/1045686016381567056/bane.png)
