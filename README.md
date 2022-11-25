@@ -18,5 +18,5 @@ Welcome to the API wiki!
 * /v1/hadith/chapter/[book]
 * /v1/hadith/[language: **eng or ar**]/collection/[books]/chapter/[chapter number]
 
-**English and arabic**
+**English and arabic = eng/ar**
 ![banner](https://cdn.discordapp.com/attachments/792479438532509697/1045823150841143407/alsunnahapi.png)
