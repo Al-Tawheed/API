@@ -14,17 +14,17 @@ Welcome to the API wiki!
 7. Malik
 
 > API HADITH
-* /v1/hadith/[language: **eng or ar**]/collection/[Books]/hadith/[specific hadith number]
-* /v1/hadith/[language: **eng or ar**]/random
-* /v1/hadith/chapter/[book]
-* /v1/hadith/[language: **eng or ar**]/collection/[books]/chapter/[chapter number]
+* https://api.alsunnah.nl/v1/hadith/[language: **eng or ar**]/collection/[Books]/hadith/[specific hadith number]
+* https://api.alsunnah.nl/v1/hadith/[language: **eng or ar**]/random
+* https://api.alsunnah.nl/v1/hadith/chapter/[book]
+* https://api.alsunnah.nl/v1/hadith/[language: **eng or ar**]/collection/[books]/chapter/[chapter number]
 
 **English and arabic = eng/ar**
 
 > API QURAN
-* /v1/quran/[language: **eng or ar or nl**]
-* /v1/quran/[language: **eng or ar or nl**]/surah/[1-144]
-* /v1/quran/[language: **eng or ar or nl**]/verse_key/[surah]:[ayah]
+* https://api.alsunnah.nl/v1/quran/[language: **eng or ar or nl**]
+* https://api.alsunnah.nl/v1/quran/[language: **eng or ar or nl**]/surah/[1-144]
+* https://api.alsunnah.nl/v1/quran/[language: **eng or ar or nl**]/verse_key/[surah]:[ayah]
 
 **eng/ar/nl**
 ![banner](https://cdn.discordapp.com/attachments/792479438532509697/1045823150841143407/alsunnahapi.png)
