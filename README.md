@@ -14,17 +14,21 @@ Welcome to the API wiki!
 7. Malik
 
 > API HADITH
-* https://api.alsunnah.nl/v1/hadith/[language: **eng or ar**]/collection/[Books]/hadith/[specific hadith number]
-* https://api.alsunnah.nl/v1/hadith/[language: **eng or ar**]/random
-* https://api.alsunnah.nl/v1/hadith/chapter/[book]
-* https://api.alsunnah.nl/v1/hadith/[language: **eng or ar**]/collection/[books]/chapter/[chapter number]
+* /v1/hadith/[language: **eng or ar**]/collection/[Books]/hadith/[specific hadith number]
+* /v1/hadith/[language: **eng or ar**]/random
+* /v1/hadith/chapter/[book]
+* /v1/hadith/[language: **eng or ar**]/collection/[books]/chapter/[chapter number]
 
 **English and arabic = eng/ar**
 
 > API QURAN
-* https://api.alsunnah.nl/v1/quran/[language: **eng or ar or nl**]
-* https://api.alsunnah.nl/v1/quran/[language: **eng or ar or nl**]/surah/[1-144]
-* https://api.alsunnah.nl/v1/quran/[language: **eng or ar or nl**]/verse_key/[surah]:[ayah]
+* /v1/quran/[language: **eng or ar or nl**]
+* /v1/quran/[language: **eng or ar or nl**]/surah/[1-144]
+* /v1/quran/[language: **eng or ar or nl**]/verse_key/[surah]:[ayah]
 
 **eng/ar/nl**
+
+You can use our API, if you dont want to host it yourself!
+https://api.alsunnah.nl/
+
 ![banner](https://cdn.discordapp.com/attachments/792479438532509697/1045823150841143407/alsunnahapi.png)
