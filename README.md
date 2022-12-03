@@ -24,6 +24,7 @@ Welcome to the API wiki!
 > API QURAN
 * /v1/quran/chapter
 * /v1/quran/[language: **eng or ar or nl**]/surah/[1-144]
+* /v1/quran/[language: **eng or ar or nl**]/random
 * /v1/quran/[language: **eng or ar or nl**]/verse_key/[surah]:[ayah]
 
 **eng/ar/nl**
