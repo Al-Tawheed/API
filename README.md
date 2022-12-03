@@ -22,7 +22,7 @@ Welcome to the API wiki!
 **English and arabic = eng/ar**
 
 > API QURAN
-* /v1/quran/[language: **eng or ar or nl**]
+* /v1/quran/chapter
 * /v1/quran/[language: **eng or ar or nl**]/surah/[1-144]
 * /v1/quran/[language: **eng or ar or nl**]/verse_key/[surah]:[ayah]
 
