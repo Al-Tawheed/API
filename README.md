@@ -1,8 +1,6 @@
 ![banner](https://cdn.discordapp.com/attachments/792479438532509697/1045823150841143407/alsunnahapi.png)
-# API
+# AlSunnah API
 API for Al-Sunnah
-
-Welcome to the API wiki!
 
 > Books
 1. Bukhari
