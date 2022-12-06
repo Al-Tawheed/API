@@ -33,7 +33,7 @@ router.get('/:language/random', async (req, res) => {
 });
 
 
-// Endpoint for surah
+// * Get whole surah
 router.get('/:language/surah/:number', async (req, res) => {
     let number = req.params.number;
 
@@ -64,7 +64,7 @@ router.get('/:language/surah/:number', async (req, res) => {
 }
 });
 
-// Endpoint for getting ayah
+// * Verse Key to get Quran verse
 router.get('/:language/verse_key/:number', async (req, res) => {
     var number = req.params.number;
     var number = number.split(':');
@@ -86,6 +86,22 @@ router.get('/:language/verse_key/:number', async (req, res) => {
 
     try{ 
         const sql = `SELECT * FROM ${dbname} WHERE surah="${surah}" AND ayah="${ayah}" ORDER BY ayah `;
+        const [rows] = await pool.execute(sql);
+        res.send({
+        statusCode: 200,
+        statusMessage: 'Ok',
+        message: 'Successfully retrieved all the hadiths.',
+        data: rows,
+    });
+} catch (err) {
+    res.status(500).send({ statusCode: 500, statusMessage: 'Internal Server Error', message: null, data: null });
+}
+});
+
+// ! get every chapter from Quran
+router.get('/chapter', async (req, res) => {
+    try{ 
+        const sql = `SELECT DISTINCT surah,chapter FROM quran_ayat`;
         const [rows] = await pool.execute(sql);
         res.send({
         statusCode: 200,
