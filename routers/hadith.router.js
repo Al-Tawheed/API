@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../databases/mysql.db');
 
-const eascape = require('../functions/escape_string.js');
+const mysql_string = require('../functions/escape_string.js');
 
 // Endpoint for getting all the records with specififck hadith number
 router.get('/:language/collection/:collection/hadith/:number', async (req, res) => {
@@ -146,7 +146,7 @@ router.get('/collection', async (req, res) => {
 router.get('/search/:language/:search', async (req, res) => {
     var colection = decodeURIComponent(req.params.search);
     
-    colection = eascape.real_escape(colection);
+    colection = mysql_string.real_escape(colection);
 
     let language = req.params.language;
     const onlyLettersPattern = /^[A-Za-z]+$/;
