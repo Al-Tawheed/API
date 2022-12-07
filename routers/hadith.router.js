@@ -4,17 +4,13 @@ const pool = require('../databases/mysql.db');
 
 const mysql_string = require('../functions/escape_string.js');
 
+
+
 // Endpoint for getting all the records with specififck hadith number
-router.get('/:language/collection/:collection/hadith/:number', async (req, res) => {
+router.get('/collection/:collection/hadith/:number', async (req, res) => {
     let colection = req.params.collection;
     let number = req.params.number;
-    let language = req.params.language;
     const onlyLettersPattern = /^[A-Za-z]+$/;
-
-    if(!language.match(onlyLettersPattern)){
-       return res.status(500).send({ statusCode: 500, statusMessage: 'Param Error', message: null, data: null });
-    }
-    var dbname = languages(language);
 
     if(isNaN(number))
     {
@@ -25,17 +21,22 @@ router.get('/:language/collection/:collection/hadith/:number', async (req, res) 
        return res.status(500).send({ statusCode: 500, statusMessage: 'Param Error', message: null, data: null });
     }
     try{ 
-        const sql = `SELECT * FROM ${dbname} WHERE collection="${colection}" AND hadithNumber=${number}`;
-        const [rows] = await pool.execute(sql);
+        // * english
+        const sql_eng = `SELECT * FROM hadithtable WHERE collection="${colection}" AND hadithNumber=${number}`;
+        const [rows_eng] = await pool.execute(sql_eng);
+        // * arabic
+        const sql_ar = `SELECT * FROM haditharabic WHERE collection="${colection}" AND hadithNumber=${number}`;
+        const [rows_ar] = await pool.execute(sql_ar);
         res.send({
-        statusCode: 200,
-        statusMessage: 'Ok',
-        message: 'Successfully retrieved all the hadiths.',
-        data: rows,
-    });
+            statusCode: 200,
+            statusMessage: 'Ok',
+            message: 'Successfully retrieved all the hadiths.',
+            data: { English: rows_eng, Arabic: rows_ar },
+        });
 } catch (err) {
     res.status(500).send({ statusCode: 500, statusMessage: 'Internal Server Error', message: null, data: null });
 }
+
 });
 
 
@@ -143,21 +144,15 @@ router.get('/collection', async (req, res) => {
 
 
 // Endpoint for chapter from collection
-router.get('/search/:language/:search', async (req, res) => {
-    var colection = decodeURIComponent(req.params.search);
-    
+router.post('/search', async (req, res) => {
+    var colection = decodeURIComponent(req.body.search);
     colection = mysql_string.real_escape(colection);
-
-    let language = req.params.language;
-    const onlyLettersPattern = /^[A-Za-z]+$/;
-
-    if(!language.match(onlyLettersPattern)){
-       return res.status(500).send({ statusCode: 500, statusMessage: 'Param Error', message: null, data: null });
-    }
+    let language = req.body.language;
     var dbname = languages(language);
 
     try{ 
         const sql = `SELECT * FROM ${dbname} WHERE text LIKE "%${colection}%"  `;
+
         const [rows] = await pool.execute(sql);
         res.send({
         statusCode: 200,
