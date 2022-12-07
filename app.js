@@ -9,6 +9,7 @@ const app = express();
 
 app.use(helmet());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const whitelist = [];
