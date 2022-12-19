@@ -15,6 +15,7 @@ const connectionOptions = {
     password: DB_USERNAME_PASSWORD,
 };
 
+
 const pool = mysql.createPool(connectionOptions);
 
 const connectToMySQL = async () => {
