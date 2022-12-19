@@ -149,16 +149,18 @@ router.post('/search', async (req, res) => {
     colection = mysql_string.real_escape(colection);
     let language = req.body.language;
     var dbname = languages(language);
-
     try{ 
-        const sql = `SELECT * FROM ${dbname} WHERE text LIKE "%${colection}%"  `;
-
+        // Search in Text
+        const sql = `SELECT * FROM ${dbname} WHERE text LIKE "%${colection}%"`;
         const [rows] = await pool.execute(sql);
+        // search transmiter
+        const sql_transmiter = `SELECT * FROM ${dbname} WHERE transmiter LIKE "%${colection}%"`;
+        const [rows_transmiter] = await pool.execute(sql_transmiter);
         res.send({
         statusCode: 200,
         statusMessage: 'Ok',
         message: 'Successfully searched',
-        data: rows,
+        data: {rows, rows_transmiter},
     });
 } catch (err) {
     res.status(500).send({ statusCode: 500, statusMessage: 'Internal Server Error', message: null, data: null });
