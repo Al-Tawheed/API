@@ -16,7 +16,7 @@ API for Al-Sunnah
 * /v1/hadith/[language: **eng or ar**]/random
 * /v1/hadith/chapter/[book]
 * /v1/hadith/[language: **eng or ar**]/collection/[books]/chapter/[chapter number]
-* /v1/hadith/search/[language: **eng or ar**]/[SEARCH] (Search has to be URL encoded)
+* **[POST REQUEST]** /v1/hadith/search {FORM ENCODE IT SHOULD CONTAIN: Language, search and your values}
 
 **English and arabic = eng/ar**
 
