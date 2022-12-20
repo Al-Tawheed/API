@@ -24,7 +24,7 @@ router.get('/:language/random', async (req, res) => {
         res.send({
         statusCode: 200,
         statusMessage: 'Ok',
-        message: 'Successfully retrieved hadith',
+        message: 'Successfully retrieved Quran verse',
         data: rows,
     });
 } catch (err) {
@@ -56,7 +56,7 @@ router.get('/:language/surah/:number', async (req, res) => {
         res.send({
         statusCode: 200,
         statusMessage: 'Ok',
-        message: 'Successfully retrieved all the hadiths.',
+        message: 'Successfully retrieved all Quran surah.',
         data: rows,
     });
 } catch (err) {
@@ -90,7 +90,7 @@ router.get('/:language/verse_key/:number', async (req, res) => {
         res.send({
         statusCode: 200,
         statusMessage: 'Ok',
-        message: 'Successfully retrieved all the hadiths.',
+        message: 'Successfully retrieved Quran verse.',
         data: rows,
     });
 } catch (err) {
@@ -98,7 +98,7 @@ router.get('/:language/verse_key/:number', async (req, res) => {
 }
 });
 
-// ! get every chapter from Quran
+
 router.get('/chapter', async (req, res) => {
     try{ 
         const sql = `SELECT DISTINCT surah,chapter FROM quran_ayat`;
