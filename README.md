@@ -1,6 +1,6 @@
-![banner](https://cdn.discordapp.com/attachments/792479438532509697/1045823150841143407/alsunnahapi.png)
-# AlSunnah API
-API for Al-Sunnah
+![banner](https://raw.githubusercontent.com/Al-Halaqah/.github/main/halaqah.png)
+# API
+API for Al-Halaqah
 
 > Books
 1. Bukhari
@@ -28,7 +28,7 @@ API for Al-Sunnah
 
 **eng/ar/nl**
 
-You can use our API, if you dont want to host it yourself!
-https://api.alsunnah.nl/
 
-![banner](https://cdn.discordapp.com/attachments/792479438532509697/1045823150841143407/alsunnahapi.png)
+
+
+![banner](https://raw.githubusercontent.com/Al-Halaqah/.github/main/halaqah.png)
