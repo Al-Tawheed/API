@@ -1,4 +1,3 @@
-![banner](https://raw.githubusercontent.com/Al-Halaqah/.github/main/halaqah.png)
 # API
 API for Al-Halaqah
 
